@@ -6,7 +6,7 @@ import SignupIcon from "@/public/signupIcon.svg";
 import LoginIcon from "@/public/loginIcon.svg";
 import Image from "next/image";
 
-function Modal({ isOpen, onClose }) {
+function Modal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
   if (!isOpen) {
     return null;
   }
