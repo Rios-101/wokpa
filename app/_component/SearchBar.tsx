@@ -5,123 +5,31 @@ import PhoneIcon from "@/public/phoneIcon.svg";
 import SignupIcon from "@/public/signupIcon.svg";
 import LoginIcon from "@/public/loginIcon.svg";
 import Image from "next/image";
+import SignUp from "./SignUp";
+import Login from "./Login";
 
-function Modal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
+function Modal({
+  isOpen,
+  onClose,
+  content,
+}: {
+  isOpen: boolean;
+  onClose: () => void;
+  content: React.ReactNode;
+}) {
   if (!isOpen) {
     return null;
   }
 
   return (
-    <div className="fixed  z-30 inset-0 flex items-center justify-center">
-      <div className="modal-content  bg-[#050505] p-4 rounded-lg shadow-md">
+    <div className="fixed z-30 inset-0 flex items-center justify-center">
+      <div className="modal-content bg-[#050505] p-4 rounded-lg shadow-md">
         <div className="flex justify-between items-center pb-3">
-          {/* <p className="text-2xl font-bold">Modal Title</p> */}
           <button onClick={onClose} className="text-red-500 hover:text-red-700">
             Close
           </button>
         </div>
-        <div className="flex items-center">
-          <div>
-            <h2 className="text-center text-white font-bold text-[20px]">
-              Create An Account
-            </h2>
-            <button
-              className="w-full my-2 group h-12 px-6 bg-white border-2 border-white rounded-full transition duration-300 
- hover:border-blue-400 focus:bg-white active:bg-white"
-            >
-              <div className="relative flex items-center space-x-4 justify-center">
-                <img
-                  src="https://tailus.io/sources/blocks/social/preview/images/google.svg"
-                  className="absolute left-0 w-5"
-                  alt="google logo"
-                />
-                <span className="block w-max font-semibold tracking-wide text-gray-700 text-sm transition duration-300 group-hover:text-blue-600 sm:text-base">
-                  Continue with Google
-                </span>
-              </div>
-            </button>
-            <button
-              className="w-full my-2 group h-12 px-6 bg-white border-2 border-white rounded-full transition duration-300 
- hover:border-blue-400 focus:bg-white active:bg-white"
-            >
-              <div className="relative flex items-center space-x-4 justify-center">
-                <img
-                  src="https://upload.wikimedia.org/wikipedia/en/0/04/Facebook_f_logo_%282021%29.svg"
-                  className="absolute left-0 w-5"
-                  alt="google logo"
-                />
-                <span className="block w-max font-semibold tracking-wide text-gray-700 text-sm transition duration-300 group-hover:text-blue-600 sm:text-base">
-                  Continue with Facebook
-                </span>
-              </div>
-            </button>
-            <form>
-              <div className="mb-4">
-                <label
-                  htmlFor="name"
-                  className="block text-gray-600 font-medium"
-                >
-                  Name
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:border-blue-400"
-                  placeholder="John Doe"
-                  required
-                />
-              </div>
-              <div className="mb-4">
-                <label
-                  htmlFor="email"
-                  className="block text-gray-600 font-medium"
-                >
-                  Email
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:border-blue-400"
-                  placeholder="john@example.com"
-                  required
-                />
-              </div>
-              <div className="mb-4">
-                <label
-                  htmlFor="password"
-                  className="block text-gray-600 font-medium"
-                >
-                  Password
-                </label>
-                <input
-                  type="password"
-                  id="password"
-                  name="password"
-                  className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:border-blue-400"
-                  placeholder="********"
-                  required
-                />
-              </div>
-              <button
-                type="submit"
-                className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600"
-              >
-                Sign Up
-              </button>
-            </form>
-          </div>
-          <div>
-            <img
-              src="/signup.png"
-              alt="Image"
-              width={230}
-              height={200}
-              className="w-full h-auto rounded-t-lg"
-            />
-          </div>
-        </div>
+        {content}
       </div>
     </div>
   );
@@ -129,13 +37,19 @@ function Modal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
 
 const SearchBar = () => {
   const [isSignUpClicked, setIsSignUpClicked] = useState(false);
+  const [isLoginClicked, setIsLoginClicked] = useState(false);
 
-  const openModal = () => {
-    setIsSignUpClicked(true);
+  const openModal = (isSignUp: any) => {
+    if (isSignUp) {
+      setIsSignUpClicked(true);
+    } else {
+      setIsLoginClicked(true);
+    }
   };
 
   const closeModal = () => {
     setIsSignUpClicked(false);
+    setIsLoginClicked(false);
   };
 
   return (
@@ -182,13 +96,20 @@ const SearchBar = () => {
             <Image src={LoginIcon} alt="Discover" className="p-0 m-0" />
             SIGN UP
           </button>
-          <button className="bg-transparent flex items-center gap-1 hover:bg-[#1EAEA3] text-white font-semibold hover:text-white py-2 px-4 border-2 border-white hover:border-transparent rounded-lg">
+          <button
+            onClick={() => openModal(false)}
+            className="bg-transparent flex items-center gap-1 hover:bg-[#1EAEA3] text-white font-semibold hover:text-white py-2 px-4 border-2 border-white hover:border-transparent rounded-lg"
+          >
             <Image src={SignupIcon} alt="Discover" className="p-0 m-0" />
             LOG IN
           </button>
         </div>
       </div>
-      <Modal isOpen={isSignUpClicked} onClose={closeModal} />
+      <Modal
+        isOpen={isSignUpClicked || isLoginClicked}
+        onClose={closeModal}
+        content={isLoginClicked ? <Login /> : <SignUp />}
+      />
     </div>
   );
 };

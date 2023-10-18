@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import SearchBar from "./SearchBar";
 import Image from "next/image";
 import Star from "@/public/star.svg";
-import Play from "@/public/play.svg";
+import Tag from "@/public/tag.svg";
 
 const Dashboard = () => {
   return (
@@ -26,70 +26,69 @@ const Dashboard = () => {
               }}
             ></div>
             <button className="absolute flex gap-2 items-center bottom-0 right-0 m-8 bg-[#7B61FF] hover:bg-[#7B61FF] text-white font-bold py-2 px-4 rounded-xl">
-              Button
-              <img src={Play} alt="Play" className="p-0 m-0" />
+              Listen Now
+              <img src="/play.png" alt="Play" className="p-0 m-0" />
             </button>
           </div>
 
           <div className="w-1/2 overflow-x-auto">
-            <h2 className="text-white p-4 font-bold text-2xl">Top Podcasts</h2>
+            <h2 className="text-white px-4 py-2 font-bold text-2xl">
+              Top Podcasts
+            </h2>
             <div className="flex space-x-4 p-4">
-              <div className="w-72 rounded-lg shadow-lg">
+              <div className=" bg-[#303030] rounded-lg shadow-lg">
                 <img
-                  src="/pode1.png"
+                  src="/img1.png"
                   alt="Image"
                   width={230}
                   height={200}
-                  className="w-full h-auto rounded-t-lg"
+                  className="w-[230px] h-[150px]  rounded-t-lg"
                 />
-                <div className="px-6 py-4">
-                  <div className="font-bold text-xl mb-2">WTF</div>
-                  <p className="text-red-600 text-base">By: Marc Maron</p>
+                <div className="w-[240px] px-6 py-4">
+                  <div className="font-bold text-xl text-white mb-2">WTF</div>
+                  <p className="text-white text-base">By: Marc Maron</p>
                 </div>
-                <div className="px-6 py-4">
-                  <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">
-                    Entertainment
-                  </span>
+                <div className="flex gap-2 items-center  px-6 py-4">
+                  <Image src={Tag} alt="Discover" className="p-0 m-0" />
+                  <h2 className="">Entertainment</h2>
                 </div>
               </div>
-              <div className="w-80 rounded-lg shadow-lg">
+              <div className=" bg-[#303030] rounded-lg shadow-lg">
                 <img
-                  src="/pode1.png"
+                  src="/img3.png"
                   alt="Image"
                   width={230}
                   height={200}
-                  className="w-full h-auto rounded-t-lg"
+                  className="w-[230px] h-[150px]  rounded-t-lg"
                 />
-                <div className="px-6 py-4">
-                  <div className="font-bold text-xl mb-2">
+                <div className="w-[240px] px-6 py-4">
+                  <div className="font-bold text-xl text-white mb-2">
                     The Joe Rogan Exper...
                   </div>
-                  <p className="text-red-600 text-base">By: Joe Rogan</p>
+                  <p className="text-white text-base">By: Joe Rogan</p>
                 </div>
-                <div className="px-6 py-4">
-                  <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">
-                    Entertainment
-                  </span>
+                <div className="flex gap-2 items-center  px-6 py-4">
+                  <Image src={Tag} alt="Discover" className="p-0 m-0" />
+                  <h2 className="">Entertainment</h2>
                 </div>
               </div>
-              <div className="w-72 rounded-lg shadow-lg">
+              <div className=" bg-[#303030] rounded-lg shadow-lg">
                 <img
-                  src="/pode1.png"
+                  src="/img2.png"
                   alt="Image"
                   width={230}
                   height={200}
-                  className="w-full h-auto rounded-t-lg"
+                  className="w-[230px] h-[150px]  rounded-t-lg"
                 />
-                <div className="px-6 py-4">
-                  <div className="font-bold text-xl mb-2">
+                <div className="w-[240px] px-6 py-4">
+                  <div className="font-bold text-xl text-white mb-2">
                     How Did Things Ge
                   </div>
-                  <p className="text-red-600 text-base">By: Mike & May</p>
+                  <p className="text-white text-base">By: Mike & May</p>
                 </div>
-                <div className="px-6 py-4">
-                  <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">
-                    Entertainment
-                  </span>
+                <div className="flex gap-2 items-center  px-6 py-4">
+                  <Image src={Tag} alt="Discover" className="p-0 m-0" />
+                  <h2 className="">Entertainment</h2>
                 </div>
               </div>
             </div>
